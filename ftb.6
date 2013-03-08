@@ -1,0 +1,59 @@
+.\" Process this file with:
+.\" groff -man -Tascii ftb.6
+.\"
+.TH FTB 6 "MARCH 2013" Linux "User Manuals"
+
+.SH NAME
+ftb \- Minecraft Feed The Beast server daemon
+
+.SH SYNOPSIS
+.B ftb {backup|say
+.I MSG
+.B |start|status|stop|who}
+
+.SH DESCRIPTION
+.B ftb
+administers the Minecraft FTB server by providing a layer of abstraction over
+the standard Minecraft/Forge server instance to make certain common tasks
+easier and accessible from the command line. It makes use of
+.BR screen (1)
+to prevent server hang-ups.
+
+.SH OPTIONS
+.IP start
+Starts the server.
+.IP stop
+Stops the server.
+.IP restart
+Restarts the server. Same as
+.B ftb stop
+followed by
+.B ftb start
+.IP status
+Indicates whether the server is currently running.
+.IP who
+Lists which players are currently connected to the server.
+.IP say
+.I MSG
+Displays
+.I MSG
+from the server to connected players.
+.IP backup
+Creates backup of entire server directory.
+
+.SH "RELATED FILES"
+.I /usr/local/sbin/ftb-maintenance.sh
+.RS
+Nightly maintenance script.
+.RE
+.I /usr/local/sbin/ftb-snapshot.sh
+.RS
+Hourly snapshot script.
+.RE
+.I /var/log/ftb-maintenance.log
+.RS
+Log file for all maintenance scripts.
+
+.SH AUTHOR
+Darren Struthers <dstruthers@gmail.com>
+
