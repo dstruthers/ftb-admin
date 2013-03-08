@@ -153,6 +153,8 @@ case "$1" in
 	;;
 
     *)
-	exit_error "Usage: $0 {start|stop|restart|status|backup|say \$MSG|who}"
+	echo -e "Usage: $0 {start|stop|restart|status|backup|say \$MSG|who}\n"
+	echo "For more information, run: man ftb"
+	exit 1
 esac
 
