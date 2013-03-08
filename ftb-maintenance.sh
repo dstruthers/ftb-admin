@@ -29,7 +29,7 @@ if ftb status > /dev/null; then
     ftb backup
     ftb start
 
-    echo "Coping backup to NAS."
+    echo "Copying backup to NAS."
     rsync -rlD --update $FTB_BACKUP_DIR $FTB_RSYNC_DEST
 
     # The following code works, but is obsolete with the rsync options below

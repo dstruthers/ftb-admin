@@ -68,10 +68,10 @@ wait_for_stop() {
 do_stop() {
     if is_running; then
 	local pid=$(find_pid)
-	echo "Attempting to stop server..."
+	echo -n "Attempting to stop server..."
 	run_as "$FTB_USER" "kill $pid"
 	wait_for_stop $pid
-	echo "Stopped."
+	echo "stopped."
     else
 	exit_error "Server is already stopped."
     fi
