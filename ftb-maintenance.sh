@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FTB_MAX_BACKUPS=6
+FTB_MAX_BACKUPS=14
 FTB_BACKUP_DIR=/home/minecraft/ftb-backups
 FTB_RSYNC_DEST=/media/robertsegal/Minecraft
 
@@ -19,17 +19,26 @@ warning() {
     sleep 10
 }
 
-(ftb who > /dev/null) && warning
+if ftb status > /dev/null; then
+    if ftb who > /dev/null; then
+	warning
+    fi
 
-echo "Running FTB maintenance script on $(date)."
-ftb stop
-ftb backup
-ftb start
+    echo "Running FTB maintenance script on $(date)."
+    ftb stop
+    ftb backup
+    ftb start
 
-# The following code works, but is obsolete with the rsync options below
-#while [ "$(num_backups)" -gt "$FTB_MAX_BACKUPS" ]; do
-#    delete_oldest_backup
-#done
+    echo "Coping backup to NAS."
+    rsync -rlD --update $FTB_BACKUP_DIR $FTB_RSYNC_DEST
 
-rsync -rlD --update $FTB_BACKUP_DIR $FTB_RSYNC_DEST
-echo -e "FTB maintenance script completed on $(date).\n"
+    # The following code works, but is obsolete with the rsync options below
+    #while [ "$(num_backups)" -gt "$FTB_MAX_BACKUPS" ]; do
+    #    delete_oldest_backup
+    #done
+
+    echo -e "FTB maintenance script completed on $(date).\n"
+
+else
+    echo -e "$(date): FTB server is not running. Skipping scheduled maintenance.\n"
+fi
