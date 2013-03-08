@@ -23,3 +23,4 @@ PATH=/usr/bin:/bin:/usr/local/bin
 # 
 # m h  dom mon dow   command
 0 4 * * * /usr/local/sbin/ftb-maintenance.sh >> /var/log/ftb-maintenance.log 2>&1
+30 * * * * /usr/local/sbin/ftb-snapshot.sh >> /var/log/ftb-maintenance.log 2>&1
