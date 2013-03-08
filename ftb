@@ -152,10 +152,6 @@ case "$1" in
 	fi
 	;;
 
-    now)
-	date +%s
-	;;
-
     *)
 	exit_error "Usage: $0 {start|stop|restart|status|backup|say \$MSG|who}"
 esac
