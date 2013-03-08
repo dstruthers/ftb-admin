@@ -78,9 +78,16 @@ do_stop() {
 }
 
 do_backup() {
-    local backupfile="$(date +%F-%H-%M).tar.gz" 
+    if [ ! -z "$1" ]; then
+	local backup_file=$1
+    else
+	local backup_file="$FTB_BACKUP_DIR/$(date +%F-%H-%M).tar.gz"
+    fi
     echo "Backing up server."
-    run_as "$FTB_USER" "cd $FTB_DIR && tar cvzfp $FTB_BACKUP_DIR/$backupfile . > /dev/null"
+    cd $FTB_DIR
+    if ! tar cvzfp $backup_file * > /dev/null; then
+	echo "Warning: tar exited with nonzero return code!" >&2
+    fi
     echo "Backup complete."
 }
 
@@ -118,7 +125,7 @@ case "$1" in
 	;;
 
     backup)
-	do_backup
+	do_backup "$2"
 	;;
 
     say)

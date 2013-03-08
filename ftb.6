@@ -7,15 +7,19 @@
 ftb \- Minecraft Feed The Beast server daemon
 
 .SH SYNOPSIS
-.B ftb {backup|say
+.B ftb {
+backup [
+.I FILE
+] | say
 .I MSG
-.B |start|status|stop|who}
+| start | status | stop | who
+.B }
 
 .SH DESCRIPTION
 .B ftb
 administers the Minecraft FTB server by providing a layer of abstraction over
 the standard Minecraft/Forge server instance to make certain common tasks
-easier and accessible from the command line. It makes use of
+accessible from the command line. It makes use of
 .BR screen (1)
 to prevent server hang-ups.
 
@@ -38,7 +42,10 @@ Displays specificed
 .I MSG
 from the server to connected players.
 .IP backup
-Creates backup of entire server directory.
+Creates backup of entire server directory. Optional
+.I FILE
+can specify file path and name; otherwise a file based on the current date and
+time is selected, and the file is saved to the default backup location.
 
 .SH "RELATED FILES"
 .I /usr/local/sbin/ftb-maintenance.sh
