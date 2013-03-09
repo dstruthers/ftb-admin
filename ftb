@@ -160,7 +160,7 @@ case "$1" in
 	;;
 
     *)
-	echo -e "Usage: $0 {start|stop|restart|status|backup|say \$MSG|who}\n"
+	echo -e "Usage: $0 { start | stop | restart | status | backup [\$FILE] |say \$MSG | who }\n"
 	echo "For more information, run: man ftb"
 	exit 1
 esac
